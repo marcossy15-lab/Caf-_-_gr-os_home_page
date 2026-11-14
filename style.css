@@ -1,0 +1,701 @@
+/* ==========================================================================
+   1. BRANDKIT CAFÉ & GRÃOS & RESET GERAL
+   ========================================================================== */
+:root {
+    --cor-marrom-cafe: #3D2417;   /* Títulos, botões primários e destaque */
+    --cor-marrom-medio: #674F41;  /* Textos secundários, bordas e subtítulos */
+    --cor-creme: #FAF2E6;         /* Fundo principal e elementos claros */
+    --cor-bege: #EBE2D7;          /* Cards de apoio e divisores */
+    --cor-taupe: #97867A;         /* Detalhes, hover e acentos elegantes */
+    --cor-superficie: #FFFFFF;    /* Fundo dos cards */
+    --sombra-card: 0 4px 12px rgba(61, 36, 23, 0.08);
+    --transicao: all 0.3s ease;
+
+    /* Cores do tema escuro */
+    --escuro-fundo: #211813;
+    --escuro-superficie: #35271F;
+    --escuro-campo: #49372D;
+    --escuro-texto: #F8EEDF;
+    --escuro-secundario: #E0C8B3;
+    --escuro-destaque: #D4AD89;
+    --escuro-borda: #A88A73;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--cor-creme);
+    color: var(--cor-marrom-cafe);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==========================================================================
+   2. NAVBAR & AUTENTICAÇÃO
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background-color: var(--cor-creme);
+    border-bottom: 1px solid var(--cor-taupe);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transicao);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--cor-taupe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+}
+
+.logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cor-marrom-cafe);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--cor-marrom-medio);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transicao);
+}
+
+.nav-item:hover, 
+.nav-item.active {
+    color: var(--cor-marrom-cafe);
+    font-weight: 700;
+}
+
+.auth-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-auth {
+    padding: 8px 18px !important;
+    font-size: 0.85rem !important;
+    width: auto !important;
+}
+
+/* ==========================================================================
+   3. CARROSSEL DE IMAGENS
+   ========================================================================== */
+.carrossel-container {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    background-color: #3D2417;
+}
+
+.carrossel-slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.slide.ativo {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.55);
+}
+
+.slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(61, 36, 23, 0.2) 0%, rgba(61, 36, 23, 0.75) 100%);
+    pointer-events: none;
+}
+
+.carrossel-legenda {
+    position: absolute;
+    bottom: 50px;
+    left: 10%;
+    right: 10%;
+    z-index: 2;
+    color: #ffffff;
+    text-align: center;
+}
+
+.carrossel-legenda h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.carrossel-legenda p {
+    font-size: 1.15rem;
+    font-weight: 400;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    background-color: rgba(61, 36, 23, 0.6);
+    color: #ffffff;
+    border: 1px solid #EBE2D7;
+    font-size: 1.5rem;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: var(--transicao);
+}
+
+.carrossel-btn:hover {
+    background-color: #3D2417;
+    border-color: #ffffff;
+}
+
+.carrossel-btn.anterior { left: 20px; }
+.carrossel-btn.proximo { right: 20px; }
+
+.carrossel-indicadores {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+}
+
+.ponto {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.ponto.ativo, 
+.ponto:hover {
+    background-color: #ffffff;
+    transform: scale(1.25);
+}
+
+/* ==========================================================================
+   4. LAYOUT PRINCIPAL E ELEMENTOS DA PÁGINA
+   ========================================================================== */
+.pagina-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    flex: 1;
+}
+
+.conteudo-principal {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.page-header h1, 
+.page-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cor-marrom-cafe);
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: var(--cor-marrom-medio);
+    font-size: 1rem;
+}
+
+/* Seção Início */
+.inicio-conteudo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.inicio-texto h1 {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    line-height: 1.3;
+    color: var(--cor-marrom-cafe);
+}
+
+.inicio-texto p {
+    color: var(--cor-marrom-medio);
+    margin-bottom: 24px;
+}
+
+.imagem-principal {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--cor-bege);
+}
+
+.imagem-principal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Grid de Cards */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.card {
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-bege);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--sombra-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transicao);
+}
+
+.card h2 {
+    font-size: 1.35rem;
+    color: var(--cor-marrom-cafe);
+    margin-bottom: 4px;
+}
+
+.card-subtitle {
+    font-size: 0.9rem;
+    color: var(--cor-marrom-medio);
+    margin-bottom: 20px;
+}
+
+/* Badge de Perfil Sensorial */
+.profile-badge {
+    background-color: var(--cor-creme);
+    padding: 16px;
+    border: 1px solid var(--cor-bege);
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.badge-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--cor-taupe);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.profile-badge h3 {
+    font-size: 1.15rem;
+    color: var(--cor-marrom-cafe);
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--cor-bege);
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--cor-marrom-medio);
+}
+
+.detail-value {
+    color: var(--cor-marrom-cafe);
+    text-align: right;
+}
+
+/* Recomendações */
+.recommendations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.coffee-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--cor-creme);
+    border: 1px solid var(--cor-bege);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.coffee-item img {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.coffee-info h4 {
+    font-size: 0.95rem;
+    color: var(--cor-marrom-cafe);
+}
+
+.coffee-notes {
+    font-size: 0.8rem;
+    color: var(--cor-marrom-medio);
+}
+
+.coffee-match {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cor-taupe);
+}
+
+/* Botões Padronizados */
+.btn-primary {
+    background-color: var(--cor-marrom-cafe);
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-taupe);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--cor-marrom-cafe);
+    border: 1px solid var(--cor-marrom-cafe);
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    background-color: var(--cor-marrom-cafe);
+    color: #ffffff;
+}
+
+.btn-inline {
+    width: auto;
+}
+
+.card-actions-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+}
+
+/* Seção Sobre */
+.sobre-conteudo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.sobre-texto h2 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    color: var(--cor-marrom-cafe);
+}
+
+.sobre-texto p {
+    color: var(--cor-marrom-medio);
+    margin-bottom: 14px;
+}
+
+.imagem-sobre {
+    width: 100%;
+    height: 260px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--cor-bege);
+}
+
+.imagem-sobre video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   5. FOOTER
+   ========================================================================== */
+.footer {
+    border-top: 1px solid var(--cor-taupe);
+    padding: 30px 0;
+    background-color: var(--cor-creme);
+    margin-top: auto;
+    transition: var(--transicao);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--cor-marrom-medio);
+}
+
+.footer-info h3 {
+    color: var(--cor-marrom-cafe);
+    margin-bottom: 4px;
+}
+
+.wireframe-tag {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--cor-taupe);
+}
+
+/* ==========================================================================
+   6. BARRA DE ACESSIBILIDADE FIXA NA ESQUERDA & MODO ESCURO
+   ========================================================================== */
+.barra-acessibilidade {
+    position: fixed;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    border: 1px solid var(--cor-bege);
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(61, 36, 23, 0.16);
+    z-index: 1100;
+    transition: var(--transicao);
+}
+
+.barra-acessibilidade button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 8px;
+    background-color: #C87D55;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.barra-acessibilidade button:hover {
+    background-color: #A65D37;
+    transform: scale(1.05);
+}
+
+.barra-acessibilidade button:focus-visible {
+    outline: 3px solid #2C1E16;
+    outline-offset: 3px;
+}
+
+/* --- REGRAS DO MODO ESCURO (INTEGRADO AO BRANDKIT) --- */
+body.modo-escuro {
+    --cor-creme: var(--escuro-fundo);
+    --cor-superficie: var(--escuro-superficie);
+    --cor-bege: var(--escuro-borda);
+    --cor-marrom-cafe: var(--escuro-texto);
+    --cor-marrom-medio: var(--escuro-secundario);
+    --cor-taupe: var(--escuro-destaque);
+    --sombra-card: 0 4px 16px rgba(0, 0, 0, 0.45);
+    background-color: var(--escuro-fundo);
+    color: var(--escuro-texto);
+}
+
+body.modo-escuro .navbar,
+body.modo-escuro .footer {
+    background-color: var(--escuro-superficie);
+    border-color: var(--escuro-borda);
+}
+
+body.modo-escuro .btn-primary {
+    background-color: var(--escuro-destaque);
+    color: var(--escuro-fundo);
+}
+
+body.modo-escuro .btn-primary:hover {
+    background-color: var(--escuro-texto);
+    color: var(--escuro-fundo);
+}
+
+body.modo-escuro .btn-secondary {
+    color: var(--escuro-destaque);
+    border-color: var(--escuro-destaque);
+}
+
+body.modo-escuro .btn-secondary:hover {
+    background-color: var(--escuro-destaque);
+    color: var(--escuro-fundo);
+}
+
+body.modo-escuro .barra-acessibilidade {
+    background-color: var(--escuro-superficie);
+    border-color: var(--escuro-borda);
+}
+
+body.modo-escuro .barra-acessibilidade button {
+    background-color: var(--escuro-campo);
+    color: var(--escuro-texto);
+    border: 1px solid var(--escuro-borda);
+}
+
+body.modo-escuro .barra-acessibilidade button:hover {
+    background-color: var(--escuro-destaque);
+    color: var(--escuro-fundo);
+}
+
+body.modo-escuro input,
+body.modo-escuro select,
+body.modo-escuro textarea {
+    background-color: var(--escuro-campo);
+    color: var(--escuro-texto);
+    border-color: var(--escuro-borda);
+}
+
+/* ==========================================================================
+   7. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px 20px;
+    }
+
+    .inicio-conteudo,
+    .content-grid,
+    .sobre-conteudo {
+        grid-template-columns: 1fr;
+    }
+
+    .carrossel-container {
+        height: 300px;
+    }
+
+    .carrossel-legenda h2 {
+        font-size: 1.5rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .barra-acessibilidade {
+        left: 8px;
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .barra-acessibilidade button {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+}

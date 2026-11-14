@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café & Grãos | Experiência em Café Especial</title>
+    <!-- Importação de fonte e estilos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- BARRA DE ACESSIBILIDADE FIXA NA ESQUERDA -->
+    <div class="barra-acessibilidade" role="group" aria-label="Ferramentas de acessibilidade">
+        <button type="button" id="diminuir-fonte" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A-</button>
+        <button type="button" id="aumentar-fonte" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
+        <button type="button" id="alternar-tema" aria-label="Ativar tema escuro" title="Alternar tema">🌙</button>
+    </div>
+
+    <!-- NAVBAR (Fluida e Padronizada) -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="logo-circle">
+                <img src="img/logo.png" alt="Café & Grãos Logo">
+            </div>
+            <span class="brand-name">Café & Grãos</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#inicio" class="nav-item active">Início</a>
+            <a href="#produtos" class="nav-item">Produtos</a>
+            <a href="#destaques" class="nav-item">Destaques</a>
+            <a href="#quiz" class="nav-item">Quiz</a>
+        </nav>
+
+        <div class="auth-container">
+            <a href="#" class="btn-secondary btn-auth">Login</a>
+            <a href="#" class="btn-primary btn-auth">Cadastro</a>
+        </div>
+    </header>
+
+    <!-- CARROSSEL DE IMAGENS -->
+    <section class="carrossel-container" aria-label="Carrossel de Destaques">
+        <div class="carrossel-slides">
+            <div class="slide ativo">
+                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1400&q=80" alt="Grãos de Café Especiais">
+                <div class="carrossel-legenda">
+                    <h2>Grãos Especiais Selecionados</h2>
+                    <p>Direto dos melhores produtores do Brasil para a sua xícara.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=80" alt="Métodos de Preparo">
+                <div class="carrossel-legenda">
+                    <h2>Arte e Precisão no Preparo</h2>
+                    <p>Descubra novas notas sensoriais em cada método.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1400&q=80" alt="Ambiente Acolhedor">
+                <div class="carrossel-legenda">
+                    <h2>Uma Experiência Única</h2>
+                    <p>Sinta o aroma e o sabor do café perfeito a qualquer hora.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de Navegação -->
+        <button class="carrossel-btn anterior" aria-label="Slide anterior">&#10094;</button>
+        <button class="carrossel-btn proximo" aria-label="Próximo slide">&#10095;</button>
+
+        <!-- Indicadores -->
+        <div class="carrossel-indicadores">
+            <span class="ponto ativo" data-index="0"></span>
+            <span class="ponto" data-index="1"></span>
+            <span class="ponto" data-index="2"></span>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="pagina-container">
+        <main class="conteudo-principal">
+            
+            <!-- SEÇÃO INÍCIO -->
+            <section class="inicio" id="inicio">
+                <div class="inicio-conteudo">
+                    <div class="inicio-texto">
+                        <h1>Descubra o café perfeito para você</h1>
+                        <p>
+                            Explore nossa curadoria de grãos selecionados das melhores regiões produtoras.
+                            Oferecemos opções sob medida para o seu paladar e o seu método de preparo preferido.
+                        </p>
+                        <a href="#produtos" class="btn-primary btn-inline">Explorar cafés</a>
+                    </div>
+
+                    <div class="imagem-principal">
+                        <img class="imagem" src="img/loja.jpeg" alt="Nossa Loja de Café">
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO SOBRE NÓS -->
+            <section class="sobre" id="sobre">
+                <div class="sobre-conteudo">
+                    <div class="sobre-texto">
+                        <h2>Sobre Nós</h2>
+                        <p>
+                            Nascido da paixão pelo bom café, o Café & Grãos é mais do que uma cafeteria.
+                            Somos um projeto dedicado a aproximar a cultura do café especial das pessoas.
+                        </p>
+                        <p>
+                            Nossa missão é apresentar cafés de qualidade, contar histórias de produtores
+                            e oferecer uma experiência simples, acessível e inesquecível.
+                        </p>
+                    </div>
+
+                    <div class="imagem-sobre">
+                        <video class="video" src="img/video1.mp4" controls></video>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- FOOTER PADRONIZADO -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Café & Grãos</h3>
+                <p>Rua do Grão Perfumado, 456 - Bairro Centro | Rio de Janeiro - RJ</p>
+                <p>Contato: (21) 3456-7890 | contato@cafegrao.com</p>
+            </div>
+            <div class="footer-rights">
+                <p>&copy; 2026 Café & Grãos. Todos os direitos reservados.</p>
+                <span class="wireframe-tag">Design System v2.0</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
